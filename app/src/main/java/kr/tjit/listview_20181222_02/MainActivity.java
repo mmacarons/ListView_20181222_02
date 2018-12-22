@@ -7,14 +7,18 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 
+import kr.tjit.listview_20181222_02.adapters.MemberAdapter;
 import kr.tjit.listview_20181222_02.datas.Member;
 
 public class MainActivity extends BaseActivity {
 
-    ListView memberListView;
 
 //    수강생 목록을 저장하는데 쓰는 ArrayList 생성
     List<Member> memberList = new ArrayList<Member>();
+
+    ListView memberListView;
+
+    MemberAdapter memberAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +40,11 @@ public class MainActivity extends BaseActivity {
     public void setValues() {
 //        실제로 멤버 목록을 채움.
         fillMembers();
+
+        memberAdapter = new MemberAdapter(mContext, memberList);
+
+        memberListView.setAdapter(memberAdapter);
+
     }
 
 //    회원 목록을 채우는 용도의 메쏘드.
